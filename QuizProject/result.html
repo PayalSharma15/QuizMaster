@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>QuizMaster - Result</title>
+
+    <link rel="stylesheet" href="css/result.css">
+
+</head>
+
+<body>
+
+    <div class="result-container">
+
+        <div class="result-card">
+
+            <div class="result-icon">
+                ✓
+            </div>
+
+            <h1>Quiz Completed!</h1>
+
+            <p class="result-message">
+                Great job! Here is your result.
+            </p>
+
+            <div class="score-circle">
+
+                <span id="percentage">
+                    0%
+                </span>
+
+            </div>
+
+            <h2>Your Score</h2>
+            <div class="performance">
+    <h2 id="performanceTitle">Good Job!</h2>
+    <p id="performanceMessage">
+        Keep practicing and improve your score!
+    </p>
+</div>
+
+<div class="score-progress">
+    <div id="scoreProgress"></div>
+</div>
+
+            <p class="score-text">
+
+                <span id="score">0</span>
+                /
+                <span id="total">10</span>
+
+            </p>
+
+            <div class="result-details">
+
+                <div class="result-box">
+
+                    <span class="result-number"
+                          id="correct">
+                        0
+                    </span>
+
+                    <span class="result-label">
+                        Correct
+                    </span>
+
+                </div>
+
+
+                <div class="result-box">
+
+                    <span class="result-number"
+                          id="wrong">
+                        0
+                    </span>
+
+                    <span class="result-label">
+                        Wrong
+                    </span>
+
+                </div>
+
+            </div>
+
+            <div class="buttons">
+
+                <button id="playAgain">
+                    Play Again
+                </button>
+
+                <button id="goHome">
+                    Go Home
+                </button>
+
+            </div>
+        <div class="review-section">
+        <h2>Review Answers</h2>
+        <div id="reviewContainer"></div>
+    </div>
+
+        </div>
+
+    </div>
+
+    <script src="js/result.js"></script>
+
+</body>
+
+</html>

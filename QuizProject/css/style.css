@@ -1,0 +1,175 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    min-height: 100vh;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background: linear-gradient(135deg, #667eea, #764ba2);
+}
+
+.container {
+    width: 100%;
+    padding: 20px;
+}
+
+.quiz-card {
+    max-width: 600px;
+    margin: auto;
+
+    background: white;
+    padding: 40px;
+
+    border-radius: 20px;
+
+    text-align: center;
+
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+}
+
+.logo {
+    font-size: 28px;
+    font-weight: bold;
+    color: #667eea;
+
+    margin-bottom: 25px;
+}
+
+h1 {
+    font-size: 36px;
+    color: #222;
+
+    margin-bottom: 15px;
+}
+
+.description {
+    color: #666;
+    font-size: 16px;
+    line-height: 1.6;
+
+    margin-bottom: 30px;
+}
+
+h2 {
+    font-size: 20px;
+    color: #333;
+
+    margin-bottom: 20px;
+}
+
+.categories {
+    display: grid;
+
+    grid-template-columns: repeat(2, 1fr);
+
+    gap: 12px;
+
+    margin-bottom: 30px;
+}
+
+.category {
+    padding: 14px;
+
+    border: 2px solid #667eea;
+
+    border-radius: 10px;
+
+    background: white;
+
+    color: #667eea;
+
+    font-size: 16px;
+    font-weight: bold;
+
+    cursor: pointer;
+
+    transition: 0.3s;
+}
+
+.category:hover {
+    background: #667eea;
+    color: white;
+
+    transform: translateY(-2px);
+}
+
+.start-btn {
+    width: 100%;
+
+    padding: 15px;
+
+    border: none;
+
+    border-radius: 10px;
+
+    background: #667eea;
+
+    color: white;
+
+    font-size: 18px;
+    font-weight: bold;
+
+    cursor: pointer;
+
+    transition: 0.3s;
+}
+
+.start-btn:hover {
+    background: #5568d8;
+
+    transform: translateY(-2px);
+}
+.login-btn,
+.register-btn {
+    display: inline-block;
+    padding: 10px 20px;
+    margin: 5px;
+
+    border-radius: 8px;
+
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.login-btn {
+    background: #667eea;
+    color: white;
+}
+
+.register-btn {
+    background: #eee;
+    color: #333;
+}
+
+@media (max-width: 500px) {
+
+    .quiz-card {
+        padding: 30px 20px;
+    }
+
+    h1 {
+        font-size: 28px;
+    }
+
+    .categories {
+        grid-template-columns: 1fr;
+    }
+}
+.category.selected {
+    background: #667eea;
+    color: white;
+    transform: translateY(-2px);
+}
+
+#message {
+    color: #667eea;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
