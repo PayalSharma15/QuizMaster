@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QuizMaster - Admin Panel</title>
+    <link rel="stylesheet" href="css/admin.css">
+</head>
+<body>
+
+    <div class="admin-container">
+
+        <div class="admin-header">
+            <h1>🛠️ Admin Panel</h1>
+            <p>Manage Quiz Questions</p>
+        </div>
+
+        <div class="admin-card">
+
+            <h2>Add New Question</h2>
+
+            <input type="text" id="category" placeholder="Category">
+
+            <input type="text" id="question" placeholder="Question">
+
+            <input type="text" id="option1" placeholder="Option 1">
+
+            <input type="text" id="option2" placeholder="Option 2">
+
+            <input type="text" id="option3" placeholder="Option 3">
+
+            <input type="text" id="option4" placeholder="Option 4">
+
+            <input type="text" id="answer" placeholder="Correct Answer">
+
+            <button id="addQuestion">Add Question</button>
+
+        </div>
+
+        <div class="admin-card">
+
+            <h2>All Questions</h2>
+
+            <div id="questionsContainer">
+                <p>Loading questions...</p>
+            </div>
+
+        </div>
+
+        <button id="goHome">Go to Home</button>
+
+    </div>
+
+    <script src="js/admin.js"></script>
+
+</body>
+</html>

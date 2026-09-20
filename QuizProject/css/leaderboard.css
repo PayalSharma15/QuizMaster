@@ -1,0 +1,131 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 30px;
+}
+
+.leaderboard-container {
+    width: 100%;
+    max-width: 900px;
+}
+
+.leaderboard-header {
+    text-align: center;
+    color: white;
+    margin-bottom: 25px;
+}
+
+.leaderboard-header h1 {
+    font-size: 32px;
+    margin-bottom: 8px;
+}
+
+.leaderboard-header p {
+    font-size: 16px;
+}
+
+.leaderboard-card {
+    background: white;
+    border-radius: 15px;
+    padding: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+}
+
+.table-header,
+.leaderboard-row {
+    display: grid;
+    grid-template-columns: 80px 1fr 180px 120px;
+    align-items: center;
+    gap: 15px;
+}
+
+.table-header {
+    background: #667eea;
+    color: white;
+    padding: 15px;
+    border-radius: 10px;
+    font-weight: bold;
+}
+
+.leaderboard-row {
+    padding: 18px 15px;
+    border-bottom: 1px solid #eee;
+}
+
+.leaderboard-row:last-child {
+    border-bottom: none;
+}
+
+.rank {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.user {
+    font-weight: bold;
+    color: #333;
+}
+
+.category {
+    color: #667eea;
+    font-weight: bold;
+}
+
+.score {
+    font-weight: bold;
+    color: #28a745;
+}
+
+.loading {
+    text-align: center;
+    padding: 30px;
+    color: #666;
+}
+
+.error {
+    text-align: center;
+    padding: 30px;
+    color: red;
+}
+
+#goHome {
+    display: block;
+    margin: 25px auto 0;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 8px;
+    background: white;
+    color: #667eea;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+#goHome:hover {
+    background: #f0f0f0;
+}
+
+@media (max-width: 700px) {
+
+    .table-header,
+    .leaderboard-row {
+        grid-template-columns: 60px 1fr 100px 80px;
+        gap: 8px;
+        font-size: 13px;
+    }
+
+    .leaderboard-header h1 {
+        font-size: 25px;
+    }
+}

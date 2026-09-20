@@ -32,3 +32,15 @@ startQuiz.addEventListener("click", function() {
 
     window.location.href = "quiz.html";
 });
+document.getElementById("leaderboardBtn")
+    .addEventListener("click", function() {
+        window.location.href = "leaderboard.html";
+    });
+    document.getElementById("historyBtn")
+    .addEventListener("click", function() {
+        window.location.href = "quizhistory.html";
+    });
+    document.getElementById("dashboardBtn")
+    .addEventListener("click", function() {
+        window.location.href = "dashboard.html";
+    });

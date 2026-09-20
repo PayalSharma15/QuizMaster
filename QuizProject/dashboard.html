@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QuizMaster - Dashboard</title>
+    <link rel="stylesheet" href="css/dashboard.css">
+</head>
+<body>
+
+    <div class="dashboard-container">
+
+        <div class="dashboard-header">
+            <h1>👤 User Dashboard</h1>
+            <p id="welcomeMessage">Welcome!</p>
+        </div>
+
+        <div class="user-info">
+            <p>Email: <strong id="userEmail">Loading...</strong></p>
+        </div>
+
+        <div class="stats-container">
+
+            <div class="stat-card">
+                <h3>Total Quizzes</h3>
+                <p id="totalQuizzes">0</p>
+            </div>
+
+            <div class="stat-card">
+                <h3>Average Score</h3>
+                <p id="averageScore">0%</p>
+            </div>
+
+            <div class="stat-card">
+                <h3>Best Score</h3>
+                <p id="bestScore">0/0</p>
+            </div>
+
+            <div class="stat-card">
+                <h3>Recent Category</h3>
+                <p id="recentCategory">-</p>
+            </div>
+
+        </div>
+
+        <button id="goHome">Go to Home</button>
+
+    </div>
+
+    <script src="js/dashboard.js"></script>
+
+</body>
+</html>
