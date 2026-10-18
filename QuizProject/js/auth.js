@@ -1,19 +1,17 @@
+
 const API_URL = "http://localhost:8080/api/users";
 
 const registerForm = document.getElementById("registerForm");
 const loginForm = document.getElementById("loginForm");
 
-
 // ==================== REGISTER ====================
 
 if (registerForm) {
-
     registerForm.addEventListener("submit", async function (event) {
-
         event.preventDefault();
 
-        const name = document.getElementById("name").value;
-        const email = document.getElementById("email").value;
+        const name = document.getElementById("name").value.trim();
+        const email = document.getElementById("email").value.trim();
         const password = document.getElementById("password").value;
 
         const user = {
@@ -22,8 +20,10 @@ if (registerForm) {
             password: password
         };
 
-        try {
+        const registerMessage =
+            document.getElementById("registerMessage");
 
+        try {
             const response = await fetch(API_URL + "/register", {
                 method: "POST",
                 headers: {
@@ -35,8 +35,7 @@ if (registerForm) {
             const responseText = await response.text();
 
             if (response.ok) {
-
-                document.getElementById("registerMessage").textContent =
+                registerMessage.textContent =
                     "Registration successful!";
 
                 setTimeout(function () {
@@ -44,36 +43,33 @@ if (registerForm) {
                 }, 1000);
 
             } else {
-
-                document.getElementById("registerMessage").textContent =
+                registerMessage.textContent =
                     responseText || "Registration failed.";
-
             }
 
         } catch (error) {
-
             console.error(error);
 
-            document.getElementById("registerMessage").textContent =
-                "Error: " + error.message;
-
+            registerMessage.textContent =
+                "Unable to connect to server. Please try again.";
         }
-
     });
-
 }
-
 
 // ==================== LOGIN ====================
 
 if (loginForm) {
-
     loginForm.addEventListener("submit", async function (event) {
-
         event.preventDefault();
 
-        const email = document.getElementById("loginEmail").value;
-        const password = document.getElementById("loginPassword").value;
+        const email =
+            document.getElementById("loginEmail").value.trim();
+
+        const password =
+            document.getElementById("loginPassword").value;
+
+        const loginMessage =
+            document.getElementById("loginMessage");
 
         const user = {
             email: email,
@@ -81,7 +77,6 @@ if (loginForm) {
         };
 
         try {
-
             const response = await fetch(API_URL + "/login", {
                 method: "POST",
                 headers: {
@@ -93,9 +88,9 @@ if (loginForm) {
             const responseText = await response.text();
 
             if (response.ok) {
-
                 const data = JSON.parse(responseText);
 
+                // Save login information
                 localStorage.setItem("isLoggedIn", "true");
 
                 localStorage.setItem(
@@ -103,29 +98,27 @@ if (loginForm) {
                     JSON.stringify(data)
                 );
 
-                document.getElementById("loginMessage").textContent =
-                    "Login successful!";
+                loginMessage.textContent = "Login successful!";
 
+                // Redirect according to user role
                 setTimeout(function () {
-                    window.location.href = "index.html";
+                    if (data.role === "ADMIN") {
+                        window.location.href = "admin.html";
+                    } else {
+                        window.location.href = "index.html";
+                    }
                 }, 1000);
 
             } else {
-
-                document.getElementById("loginMessage").textContent =
+                loginMessage.textContent =
                     responseText || "Invalid email or password.";
-
             }
 
         } catch (error) {
-
             console.error(error);
 
-            document.getElementById("loginMessage").textContent =
-                "Error: " + error.message;
-
+            loginMessage.textContent =
+                "Unable to connect to server. Please try again.";
         }
-
     });
-
 }
