@@ -4,39 +4,76 @@ const API_URL = "http://localhost:8080/api/users";
 const registerForm = document.getElementById("registerForm");
 const loginForm = document.getElementById("loginForm");
 
+async function readResponse(response) {
+    const text = await response.text();
+
+    if (!text) return {};
+
+    try {
+        return JSON.parse(text);
+    } catch {
+        return { message: text };
+    }
+}
+
 // ==================== REGISTER ====================
 
 if (registerForm) {
     registerForm.addEventListener("submit", async function (event) {
         event.preventDefault();
 
-        const name = document.getElementById("name").value.trim();
-        const email = document.getElementById("email").value.trim();
-        const password = document.getElementById("password").value;
+        const name =
+            document.getElementById("name").value.trim();
 
-        const user = {
-            name: name,
-            email: email,
-            password: password
-        };
+        const email =
+            document.getElementById("email").value.trim();
+
+        const password =
+            document.getElementById("password").value;
 
         const registerMessage =
             document.getElementById("registerMessage");
 
-        try {
-            const response = await fetch(API_URL + "/register", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify(user)
-            });
+        registerMessage.textContent = "";
 
-            const responseText = await response.text();
+        if (!name || !email || !password) {
+            registerMessage.textContent =
+                "Please fill in all fields.";
+            return;
+        }
+
+        const user = { name, email, password };
+
+        try {
+            const response = await fetch(
+                API_URL + "/register",
+                {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify(user)
+                }
+            );
+
+            const data = await readResponse(response);
+
+            if (response.status === 409) {
+                registerMessage.textContent =
+                    data.message ||
+                    "This email is already registered. Please login.";
+
+                alert(
+                    "This email is already registered. Please login."
+                );
+                return;
+            }
 
             if (response.ok) {
                 registerMessage.textContent =
-                    "Registration successful!";
+                    "Registration successful! Please login.";
+
+                registerForm.reset();
 
                 setTimeout(function () {
                     window.location.href = "login.html";
@@ -44,14 +81,15 @@ if (registerForm) {
 
             } else {
                 registerMessage.textContent =
-                    responseText || "Registration failed.";
+                    data.message ||
+                    "Registration failed. Please try again.";
             }
 
         } catch (error) {
-            console.error(error);
+            console.error("Registration error:", error);
 
             registerMessage.textContent =
-                "Unable to connect to server. Please try again.";
+                "Unable to connect to server. Check that the backend is running.";
         }
     });
 }
@@ -71,26 +109,29 @@ if (loginForm) {
         const loginMessage =
             document.getElementById("loginMessage");
 
-        const user = {
-            email: email,
-            password: password
-        };
+        loginMessage.textContent = "";
+
+        if (!email || !password) {
+            loginMessage.textContent =
+                "Please enter email and password.";
+            return;
+        }
 
         try {
-            const response = await fetch(API_URL + "/login", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify(user)
-            });
+            const response = await fetch(
+                API_URL + "/login",
+                {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({ email, password })
+                }
+            );
 
-            const responseText = await response.text();
+            const data = await readResponse(response);
 
             if (response.ok) {
-                const data = JSON.parse(responseText);
-
-                // Save login information
                 localStorage.setItem("isLoggedIn", "true");
 
                 localStorage.setItem(
@@ -100,25 +141,25 @@ if (loginForm) {
 
                 loginMessage.textContent = "Login successful!";
 
-                // Redirect according to user role
                 setTimeout(function () {
                     if (data.role === "ADMIN") {
                         window.location.href = "admin.html";
                     } else {
                         window.location.href = "index.html";
                     }
-                }, 1000);
+                }, 700);
 
             } else {
                 loginMessage.textContent =
-                    responseText || "Invalid email or password.";
+                    data.message ||
+                    "Invalid email or password.";
             }
 
         } catch (error) {
-            console.error(error);
+            console.error("Login error:", error);
 
             loginMessage.textContent =
-                "Unable to connect to server. Please try again.";
+                "Unable to connect to server. Check that the backend is running.";
         }
     });
 }
