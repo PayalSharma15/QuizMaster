@@ -17,16 +17,19 @@ public class UserService {
         this.userRepository = userRepository;
     }
 
-    public User registerUser(User user) {
+   public User registerUser(User user) {
 
-        String encodedPassword =
-                passwordEncoder.encode(user.getPassword());
+    String encodedPassword =
+            passwordEncoder.encode(user.getPassword());
 
-        user.setPassword(encodedPassword);
+    user.setPassword(encodedPassword);
 
-        return userRepository.save(user);
+    if (user.getRole() == null || user.getRole().isEmpty()) {
+        user.setRole("USER");
     }
 
+    return userRepository.save(user);
+}
     public User loginUser(User user) {
 
         return userRepository.findByEmail(user.getEmail())
